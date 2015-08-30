@@ -51,6 +51,15 @@ func (api AmazonProductAPI) ItemSearchByKeywordWithResponseGroup(Keywords string
 	return api.ItemSearch("All", params)
 }
 
+func (api AmazonProductAPI) ItemSearchByKeywordWithResponseGroupAndPage(Keywords string, ResponseGroup string, page int) (string, error) {
+	params := map[string]string{
+		"Keywords":      Keywords,
+		"ResponseGroup": ResponseGroup,
+		"ItemPage":      strconv.FormatInt(int64(page), 10),
+	}
+	return api.ItemSearch("All", params)
+}
+
 func (api AmazonProductAPI) ItemSearch(SearchIndex string, Parameters map[string]string) (string, error) {
 	Parameters["SearchIndex"] = SearchIndex
 	return api.genSignAndFetch("ItemSearch", Parameters)

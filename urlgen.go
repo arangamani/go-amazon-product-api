@@ -90,6 +90,7 @@ func SignAmazonUrl(origUrl *url.URL, api AmazonProductAPI) (signedUrl string, er
 
 	escapeUrl := strings.Replace(origUrl.RawQuery, ",", "%2C", -1)
 	escapeUrl = strings.Replace(escapeUrl, ":", "%3A", -1)
+	escapeUrl = strings.Replace(escapeUrl, "+", "%20", -1)
 
 	params := strings.Split(escapeUrl, "&")
 	sort.Strings(params)
